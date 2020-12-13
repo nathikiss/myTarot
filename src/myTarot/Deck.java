@@ -44,6 +44,7 @@ public class Deck {
 			System.out.println("La carte que vous souhaitez supprimer n'existe pas");
 		}
 	}
+	
 	public void fillWithDeckMarseille() {
 		String[] namesMarseille = { "Le Bateleur", "La Papesse", "L'Impératrice", "L'Empereur", "Le Pape", "L'Amoureux",
 	            "Le Chariot", "La Justice", "L'Hermite", "La Roue de la fortune", "La Force", "Le Pendu", "L'Arcane sans nom", "Tempérance",

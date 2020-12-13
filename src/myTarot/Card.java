@@ -9,20 +9,28 @@ public class Card {
 	
 	/*Attributes*/
 	private String name;
-	
+	private String description="";
 	/*Constructor*/
 	public Card(String n) {
 		this.name=n;
 	}
-	
+	public Card(String n, String desc) {
+		this.name=n;
+		this.description=desc;
+	}
 	/*Assessors*/
 	public String getName() {
 		return name;
 	}
+	public String getDescription() {
+		return description;
+	}
 	
 	/*Methods*/
-	
-
+	/*This method modify an existing description or add a description to a card*/
+	public void addDescription(String description) {
+		this.description = description;
+	}
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
