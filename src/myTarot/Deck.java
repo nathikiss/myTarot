@@ -1,6 +1,8 @@
 package myTarot;
 
 import java.util.ArrayList;
+import java.util.Collections;
+
 
 public class Deck {
 	/*
@@ -44,7 +46,7 @@ public class Deck {
 			System.out.println("La carte que vous souhaitez supprimer n'existe pas");
 		}
 	}
-	
+	/*This method filled the deck with the Marseille Tarot cards*/
 	public void fillWithDeckMarseille() {
 		String[] namesMarseille = { "Le Bateleur", "La Papesse", "L'Impératrice", "L'Empereur", "Le Pape", "L'Amoureux",
 	            "Le Chariot", "La Justice", "L'Hermite", "La Roue de la fortune", "La Force", "Le Pendu", "L'Arcane sans nom", "Tempérance",
@@ -54,6 +56,26 @@ public class Deck {
 			
 		}
 	
+	}
+	
+	/* leverDeVoile is a cards drawing method, we shuffle the deck, draw three cards 
+	 * to set on the table and we give the prediction of the three card :
+	 * the first one symbolize how the situation is perceive the situation
+	 * the second one represent what prevent the user from seeing the truth
+	 * the last one is the truth the real situation */
+	public ArrayList<Card> leverDeVoile(){
+		Collections.shuffle(cards);
+		ArrayList<Card> divinationCards = new ArrayList<Card>();
+		System.out.println("le paquet est mélangé \n");
+		if (cards.size()>0) {
+			Card perceiveCard = this.cards.get(cards.size()-1);
+			Card troubleCard = this.cards.get(cards.size()-2);
+			Card truthCard = this.cards.get(cards.size()-3);
+			divinationCards.add(perceiveCard);
+			divinationCards.add(troubleCard);
+			divinationCards.add(truthCard);
+			}
+		return divinationCards;
 	}
 	public Card displayOneCard(String n) {
 		Card theCard=null;
@@ -70,17 +92,51 @@ public class Deck {
 		Card theCard=null;
 		int foundCard=0;
 		for (Card card :cards) {
+			cardName = card.getName();
+			if(cardName == n ) { 
+				foundCard += 1;
+				theCard = card;
+				break;
+			}
+		}
+		if (foundCard==1) {
+			System.out.println("La carte "+cardName+" a été trouvé");
+		}
+		else {
+			System.out.println("La carte n'existe pas ou son nom n'est pas exacte");
+		}
+		
+		
+	}
+	/*Retourne un String mais devrait retourner la carte*/
+	public Card searchCardByNumber(int nb) {
+		int i;
+		Card theCard=null;
+		for( i = 0; i<=nb ; i++) {
+			theCard=cards.get(nb);
+		}
+		//System.out.println( "La carte possédant l'indice "+nb+" est la carte : "+theCard.getName());
+		return theCard;
+	}
+	/*Ne renvoie rien pour le moment mais devrait peut être renvoyer la carte plus tard theCard*/
+	public void searchCardByStringIn(String n) {
+		String cardName="";
+		Card theCard=null;
+		int foundCard=0;
+		for (Card card :cards) {
 			cardName = card.getName();//we retrieve the name
 			if(cardName.contains(n)) {//if the card contains the user's String 
 				foundCard+=1;
 				theCard=card;
 			}
 		}
+		
+		
 		if (foundCard==1) {
-			System.out.println("Vous avez entrez la chaine de caractère "+n+"\n"+"Recherchez vous la carte "+theCard.getName()+" ?");
-			
+			System.out.println("Vous avez entrez la chaine de caractère "+n+
+					"\n"+"Recherchez vous la carte "+theCard.getName()+" ?");
 		}
-		else if(foundCard>1){
+		else if (foundCard>1){
 			System.out.println("Votre chaine de caractère('"+n+"')a été retrouvé dans plusieurs cartes");
 			for (Card card :cards) {
 				cardName = card.getName();
@@ -99,8 +155,12 @@ public class Deck {
 	
 	@Override
 	public String toString() {
-		
-		return "Voici votre deck : "+getCards();
+		if (getCards().size()<1) {
+			return "Votre deck est vide";
+		}
+		else {
+			return "Voici votre deck : "+getCards();
+		}
 	}
 	
 }
