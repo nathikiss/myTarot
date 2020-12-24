@@ -1,10 +1,11 @@
 package myTarot;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class Deck {
+public class Deck implements Serializable {
 	/*
 	 * This class contains a card package, a name, methods which allow to add card, 
 	 * to remove card, to search a card among the deck */
@@ -13,6 +14,9 @@ public class Deck {
 	private ArrayList<Card>cards;
 	
 	/*Constructors*/
+	public Deck () {
+		this.cards = new ArrayList<Card>();
+	}
 	public Deck (ArrayList<Card> c) {
 		this.cards=c;
 	}

@@ -1,8 +1,9 @@
 package myTarot;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Card {
+public class Card implements Serializable{
 	/*
 	 * This class permit creates divinatory card among the existing one and add new type,
 	 *  a card has a name*/
