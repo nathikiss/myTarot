@@ -30,7 +30,7 @@ public class Main {
 		window.setSize(600,400);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setLocationRelativeTo(null);
-		window.setLayout(new FlowLayout());
+		
 		/*TEST DES IMAGES*/
 		/*
 		window.add(new JLabel(CardTest.getName()));
@@ -42,12 +42,16 @@ public class Main {
 
 		window.add(label);
 		*/
+		
 		for(Card card : deckTest.getCards()) {
+			window.setLayout(new FlowLayout());
 			window.add(new JLabel(card.getName()));
 			window.add(new JLabel(card.getDescription()));
 			ImageIcon icon = new ImageIcon(card.getImgPath());
-			JLabel label=new JLabel(icon,JLabel.CENTER);
-			System.out.println("LE PATH "+card.getImgPath());
+			Image iconData = icon.getImage();
+			Image resizedIcon=iconData.getScaledInstance(87,162,java.awt.Image.SCALE_SMOOTH);			
+			icon=new ImageIcon(resizedIcon);
+			JLabel label=new JLabel(icon);
 			window.add(label);
 		}
 		
