@@ -11,7 +11,7 @@ public class Card implements Serializable{
 	/*Attributes*/
 	private String name;
 	private String description="";
-	private String imgName="";
+	private String imgPath="";
 	
 	/*Constructor*/
 	public Card(String n) {
@@ -24,7 +24,7 @@ public class Card implements Serializable{
 	public Card(String n, String desc,String img) {
 		this.name=n;
 		this.description=desc;
-		this.imgName=img;
+		this.imgPath=img;
 	}
 	
 	/*Assessors*/
@@ -34,8 +34,8 @@ public class Card implements Serializable{
 	public String getDescription() {
 		return description;
 	}
-	public String getImgName() {
-		return imgName;
+	public String getImgPath() {
+		return imgPath;
 	}
 	
 	
@@ -45,12 +45,12 @@ public class Card implements Serializable{
 		this.description = description;
 	}
 	public void addImg(String img) {
-		this.imgName = img;
+		this.imgPath = img;
 	}
-	public void updateCard(String name,String description,String imgName) {
+	public void updateCard(String name,String description,String imgPath) {
 		this.name = name;
 		this.description=description;
-		this.imgName=imgName;
+		this.imgPath=imgPath;
 	}
 	@Override
 	public String toString() {

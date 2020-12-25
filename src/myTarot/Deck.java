@@ -50,15 +50,41 @@ public class Deck implements Serializable {
 			System.out.println("La carte que vous souhaitez supprimer n'existe pas");
 		}
 	}
+	/*This method filled the deck with Tarot cards*/
+	public void fillTest() {
+		String[] names= { "Le Bateleur", "La Papesse", "L'Impératrice", "L'Empereur"};
+		String [] descs = {"C’est le début de tout. Je montre mes capacités. //Je manque de confiance en moi. J’ai peur de m’affirmer.",
+							"Je prends le temps de bien préparer mon projet. //Je me bloque et j’attends. Je me renferme sur moi-même.",
+							"Je m’exprime. Je communique. //Je parle trop. Je m’exprime trop brutalement.",
+							"J’agis. Je réalise. Je dirige. //Je suis trop autoritaire"};
+		/*Just to Avoid repetition*/
+		String srcPath="src/myTarot/images/";
+		String [] imgs= {srcPath+"lebateleur.jpg",srcPath+"lapapesse.jpg",srcPath+"limperatrice.jpg",srcPath+"lempereur.jpg"};
+		String desc= "Pas de Description insérée";
+		String img ="No Image";
+  		for(int i=0; i<names.length;i++) {
+  			if (descs.length==names.length && imgs.length==names.length) {
+  				desc = descs[i];
+  				img=imgs[i];
+  				
+			}
+			cards.add(new Card(names[i],desc,img));
+			}
+	
+	}
 	/*This method filled the deck with the Marseille Tarot cards*/
 	public void fillWithDeckMarseille() {
 		String[] namesMarseille = { "Le Bateleur", "La Papesse", "L'Impératrice", "L'Empereur", "Le Pape", "L'Amoureux",
 	            "Le Chariot", "La Justice", "L'Hermite", "La Roue de la fortune", "La Force", "Le Pendu", "L'Arcane sans nom", "Tempérance",
 	            "Le Diable", "La Maison-Dieu", "L'Étoile", "La Lune", "Le Soleil", "Le Jugement", "Le Monde", "Le Mat" };
-		for(int i=0; i<namesMarseille.length;i++) {
-			cards.add(new Card(namesMarseille[i]));
-			
-		}
+		String [] descsMarseille = {""};
+		String desc= "Pas de Description insérée";
+  		for(int i=0; i<namesMarseille.length;i++) {
+  			if (descsMarseille.length==namesMarseille.length) {
+  				desc = descsMarseille[i];
+			}
+			cards.add(new Card(namesMarseille[i],desc));
+			}
 	
 	}
 	
