@@ -19,49 +19,67 @@ public class MyWindow extends JFrame{
 		this.setLocationRelativeTo(null);
 		Deck deckTest = new Deck();
 		deckTest.fillTest();
+		/* page is a JPanel representing our page, all the data will be display on it
+		 * In Box Layout to allow us to display data successively*/
+		JPanel page = new JPanel();
+		BoxLayout manPage = new BoxLayout(page, BoxLayout.Y_AXIS);
+		page.setLayout(manPage);
 		
-		/*JPanel Creation,*/
-		/*First panel creations
-		 * gameTable represent the divination table on it there will be several cardPan */
+		/* gameTable represent the divination table on it there will be several cardPan */
 		JPanel gameTable = new JPanel();
-		/*Select the manager*/
+		
+		/*Select the manager
+		 * FlowLayout permit display the several cards align*/
 		FlowLayout manTable = new FlowLayout();
 		gameTable.setLayout(manTable);
-		
-		JPanel cardPan = new JPanel();
-		/*Choose a Layout manager
-		 * Here we choose a BoxLayout because we want to display
-		 * the card picture and it name with the axis Y to organize 
-		 * horizontally 
-		 */
-		BoxLayout manCard = new BoxLayout(cardPan, BoxLayout.Y_AXIS);
-		/*Attach the layout to the panel*/
-		cardPan.setLayout(manCard);
-		/*We create a label containing the card's Name*/
-		Card idOneCard=deckTest.getCards().get(0);
-		System.out.println(idOneCard);
-		JLabel nameCard =new JLabel(idOneCard.getName());
-		
-		
-		/*ICON*/
-		ImageIcon icon = new ImageIcon(idOneCard.getImgPath());
-		Image iconData = icon.getImage();
-		
-		/*Icon resizing*/
-		Image resizedIcon=iconData.getScaledInstance(87,162,java.awt.Image.SCALE_SMOOTH);			
-		icon=new ImageIcon(resizedIcon);
-		/*We create a label containing the card's resized Icon*/
-		JLabel iconLabel=new JLabel(icon);
-		
-		/**/
-		JLabel descCard =new JLabel(idOneCard.getDescription());
-		JScrollPane scrollRight= new JScrollPane(descCard);
+
+		/*Loop permitting display all the card*/
+		for(Card card : deckTest.getCards()) {
+			JPanel cardPan = new JPanel();
+			/*Choose a Layout manager
+			 * Here we choose a BoxLayout because we want to display
+			 * the card picture and it name with the axis Y to organize 
+			 * horizontally 
+			 */
+			BoxLayout manCard = new BoxLayout(cardPan, BoxLayout.Y_AXIS);
+			/*Attach the layout to the panel*/
+			cardPan.setLayout(manCard);
+			/*We create a label containing the card's Name*/
+			System.out.println(card);
+			JLabel nameCard =new JLabel(card.getName());
 			
-		/*We stock the labels into the panel*/
-		cardPan.add(nameCard);
-		cardPan.add(iconLabel);
-		//cardPan.add(scrollRight);
-		setContentPane(cardPan);
+			
+			/*ICON*/
+			ImageIcon icon = new ImageIcon(card.getImgPath());
+			Image iconData = icon.getImage();
+			
+			/*Icon resizing*/
+			Image resizedIcon=iconData.getScaledInstance(87,162,java.awt.Image.SCALE_SMOOTH);			
+			icon=new ImageIcon(resizedIcon);
+			/*We create a label containing the card's resized Icon*/
+			JLabel iconLabel=new JLabel(icon);
+			
+			/**/
+			JLabel descCard =new JLabel(card.getDescription());
+			JScrollPane scrollRight= new JScrollPane(descCard);
+				
+			/*We stock the labels into the panel*/
+			cardPan.add(nameCard);
+			cardPan.add(iconLabel);
+			//cardPan.add(scrollRight);
+			
+			/*We insert cardPans (containing picture card and name card) in the gameTable
+			 * as if we were setting the Deck on a table*/
+			
+			gameTable.add(cardPan);
+		}
+		/*add a toolbar to the page*/
+		JToolBar toolBar = toolBar();
+		toolBar.setMaximumSize(new Dimension(1000,30));
+		page.add(toolBar);
+		/*add the gameTable to the page*/
+		page.add(gameTable);
+		setContentPane(page);
 		
 
 	}
