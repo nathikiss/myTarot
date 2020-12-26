@@ -42,16 +42,21 @@ public class Main {
 
 		window.add(label);
 		*/
-		
 		for(Card card : deckTest.getCards()) {
 			window.setLayout(new FlowLayout());
 			window.add(new JLabel(card.getName()));
-			window.add(new JLabel(card.getDescription()));
+			//window.add(new JLabel(card.getDescription()));
+			
+			
+			
+			/*dszfe*/
 			ImageIcon icon = new ImageIcon(card.getImgPath());
 			Image iconData = icon.getImage();
+			/*Icon resizing*/
 			Image resizedIcon=iconData.getScaledInstance(87,162,java.awt.Image.SCALE_SMOOTH);			
 			icon=new ImageIcon(resizedIcon);
 			JLabel label=new JLabel(icon);
+			
 			window.add(label);
 		}
 		

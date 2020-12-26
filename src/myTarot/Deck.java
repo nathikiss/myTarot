@@ -53,10 +53,10 @@ public class Deck implements Serializable {
 	/*This method filled the deck with Tarot cards*/
 	public void fillTest() {
 		String[] names= { "Le Bateleur", "La Papesse", "L'Impératrice", "L'Empereur"};
-		String [] descs = {"C’est le début de tout. Je montre mes capacités. //Je manque de confiance en moi. J’ai peur de m’affirmer.",
-							"Je prends le temps de bien préparer mon projet. //Je me bloque et j’attends. Je me renferme sur moi-même.",
-							"Je m’exprime. Je communique. //Je parle trop. Je m’exprime trop brutalement.",
-							"J’agis. Je réalise. Je dirige. //Je suis trop autoritaire"};
+		String [] descs = {"C’est le début de tout. Je montre mes capacités"+"\n"+"Je manque de confiance en moi. J’ai peur de m’affirmer.",
+							"Je prends le temps de bien préparer mon projet"+"\n"+"Je me bloque et j’attends. Je me renferme sur moi-même.",
+							"Je m’exprime. Je communique "+"\n"+"Je parle trop. Je m’exprime trop brutalement.",
+							"J’agis. Je réalise. Je dirige."+"\n"+"Je suis trop autoritaire"};
 		/*Just to Avoid repetition*/
 		String srcPath="src/myTarot/images/";
 		String [] imgs= {srcPath+"lebateleur.jpg",srcPath+"lapapesse.jpg",srcPath+"limperatrice.jpg",srcPath+"lempereur.jpg"};
