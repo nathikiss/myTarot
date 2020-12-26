@@ -19,42 +19,49 @@ public class MyWindow extends JFrame{
 		this.setLocationRelativeTo(null);
 		Deck deckTest = new Deck();
 		deckTest.fillTest();
+		
 		/*JPanel Creation,*/
-		JPanel contentPane= (JPanel) this.getContentPane();
+		/*First panel creations
+		 * gameTable represent the divination table on it there will be several cardPan */
+		JPanel gameTable = new JPanel();
+		/*Select the manager*/
+		FlowLayout manTable = new FlowLayout();
+		gameTable.setLayout(manTable);
 		
-		int maxCardPerLine = deckTest.getCards().size();
-		GridLayout gridCard=new GridLayout(3,maxCardPerLine,20,20);
-		contentPane.setLayout(gridCard);
-		
-
-		contentPane.add(toolBar());
-		
-		for(Card card : deckTest.getCards()) {
-			JLabel nameCard =new JLabel(card.getName());
-			contentPane.add(nameCard);
-		}
-	
-		for(Card card : deckTest.getCards()) {
-			/*ICON*/
-			ImageIcon icon = new ImageIcon(card.getImgPath());
-			Image iconData = icon.getImage();
-			/*Icon resizing*/
-			Image resizedIcon=iconData.getScaledInstance(87,162,java.awt.Image.SCALE_SMOOTH);			
-			icon=new ImageIcon(resizedIcon);
-			JLabel label=new JLabel(icon);
-			contentPane.add(label);	
-		}
-		
-		for(Card card : deckTest.getCards()) {
-			JTextField descCard =new JTextField(card.getDescription());
-			descCard.setEditable(false);
-			JScrollPane scrollRight= new JScrollPane(descCard);
-			contentPane.add(scrollRight,BorderLayout.CENTER);
-			//contentPane.add(descCard);
-		}
+		JPanel cardPan = new JPanel();
+		/*Choose a Layout manager
+		 * Here we choose a BoxLayout because we want to display
+		 * the card picture and it name with the axis Y to organize 
+		 * horizontally 
+		 */
+		BoxLayout manCard = new BoxLayout(cardPan, BoxLayout.Y_AXIS);
+		/*Attach the layout to the panel*/
+		cardPan.setLayout(manCard);
+		/*We create a label containing the card's Name*/
+		Card idOneCard=deckTest.getCards().get(0);
+		System.out.println(idOneCard);
+		JLabel nameCard =new JLabel(idOneCard.getName());
 		
 		
-	
+		/*ICON*/
+		ImageIcon icon = new ImageIcon(idOneCard.getImgPath());
+		Image iconData = icon.getImage();
+		
+		/*Icon resizing*/
+		Image resizedIcon=iconData.getScaledInstance(87,162,java.awt.Image.SCALE_SMOOTH);			
+		icon=new ImageIcon(resizedIcon);
+		/*We create a label containing the card's resized Icon*/
+		JLabel iconLabel=new JLabel(icon);
+		
+		/**/
+		JLabel descCard =new JLabel(idOneCard.getDescription());
+		JScrollPane scrollRight= new JScrollPane(descCard);
+			
+		/*We stock the labels into the panel*/
+		cardPan.add(nameCard);
+		cardPan.add(iconLabel);
+		//cardPan.add(scrollRight);
+		setContentPane(cardPan);
 		
 
 	}
