@@ -39,7 +39,7 @@ public class MyWindow extends JFrame{
 			/*Choose a Layout manager
 			 * Here we choose a BoxLayout because we want to display
 			 * the card picture and it name with the axis Y to organize 
-			 * horizontally 
+			 * horizontally (permitting display the one under the other)
 			 */
 			BoxLayout manCard = new BoxLayout(cardPan, BoxLayout.Y_AXIS);
 			/*Attach the layout to the panel*/
@@ -56,21 +56,30 @@ public class MyWindow extends JFrame{
 			/*Icon resizing*/
 			Image resizedIcon=iconData.getScaledInstance(87,162,java.awt.Image.SCALE_SMOOTH);			
 			icon=new ImageIcon(resizedIcon);
+			
 			/*We create a label containing the card's resized Icon*/
 			JLabel iconLabel=new JLabel(icon);
 			
-			/**/
+			/*Description with a scroll bar to display everything*/
 			JLabel descCard =new JLabel(card.getDescription());
 			JScrollPane scrollRight= new JScrollPane(descCard);
-				
+			
+			/*
+			 * Those Buttons will permit remove a card, update a card
+			 */
+			
+			JButton suppButton = new JButton("Supprimer");
+			JButton updateButton = new JButton("Mise à Jour");
+		
 			/*We stock the labels into the panel*/
 			cardPan.add(nameCard);
 			cardPan.add(iconLabel);
 			//cardPan.add(scrollRight);
+			cardPan.add(suppButton);
+			cardPan.add(updateButton);
 			
 			/*We insert cardPans (containing picture card and name card) in the gameTable
 			 * as if we were setting the Deck on a table*/
-			
 			gameTable.add(cardPan);
 		}
 		/*add a toolbar to the page*/
