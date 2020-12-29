@@ -134,21 +134,7 @@ public class Deck implements Serializable {
 		return divinationCards;
 	}
 	
-	/**
-	 *@param  n a String representing the name of 
-	 *the card we want to display
-	 *@return theCard 
-	 **/
-	public Card displayOneCard(String n) {
-		Card theCard=null;
-		for (Card card :cards) { 
-			if(card.getName()==n) {
-				theCard=card;
-			}
-		}
-		return theCard;
-	 
-	}
+	
 	/**
 	 * @param n a String representing the name of the card
 	 * Thanks to a loop we search the parameter in the Deck
@@ -191,6 +177,7 @@ public class Deck implements Serializable {
 		for( i = 0; i<=nb ; i++) {
 			theCard=cards.get(nb);
 		}
+		System.out.println("La carte ayant l'indice "+nb+" est "+theCard.getName());
 		return theCard;
 	}
 	

@@ -79,6 +79,6 @@ public class Card implements Serializable{
 	 * @return name containing the name of the card*/
 	@Override
 	public String toString() {
-		return name;
+		return name ;
 	}
 }

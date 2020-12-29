@@ -30,7 +30,7 @@ public class MyWindow extends JFrame {
 		this.setLocationRelativeTo(null);
 		final Deck deckTest = new Deck();
 		deckTest.fillTest();
-		
+
 		/* page is a JPanel representing our page, all the data will be display on it
 		 * We choose a BoxLayout to display data successively
 		 * */
@@ -65,7 +65,7 @@ public class MyWindow extends JFrame {
 			
 			/* We create a label containing the card's Name */
 			System.out.println(card);
-			JLabel nameCard =new JLabel(card.getName());
+			final JLabel nameCard =new JLabel(card.getName());
 			
 			
 			/* ICON */
@@ -77,10 +77,10 @@ public class MyWindow extends JFrame {
 			icon=new ImageIcon(resizedIcon);
 			
 			/* We create a label containing the card's resized Icon */
-			JLabel iconLabel=new JLabel(icon);
+			final JLabel iconLabel=new JLabel(icon);
 			
 			/* Description with a scroll bar to display everything */
-			JLabel descCard =new JLabel(card.getDescription());
+			final JLabel descCard =new JLabel(card.getDescription());
 			JScrollPane scrollRight= new JScrollPane(descCard);
 			
 			/*
@@ -95,7 +95,8 @@ public class MyWindow extends JFrame {
 				      gameTable.remove(cardPan);
 				    /* Remove the card in the arrayList Deck */
 				      deckTest.removeCard(card.getName());
-				      pack();
+				      page.revalidate();
+				      page.repaint();
 				    }
 			});
 			
@@ -108,19 +109,38 @@ public class MyWindow extends JFrame {
 				 */
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					JPanel updWindow = new JPanel();
-					BorderLayout manUpd = new BorderLayout();
-					updWindow.setLayout(manUpd);
-					JTextField newName = new JTextField();
+					
+					final JTextField modifFieldName = new JTextField("Le nom de la carte");
+					final JTextField modifFieldDesc = new JTextField("La description de la carte");
+					final JTextField modifFieldImg = new JTextField("Le chemin de l'image");
+					modifFieldName.setForeground(Color.gray);
+					modifFieldDesc.setForeground(Color.gray);
+					modifFieldImg.setForeground(Color.gray);
 					JButton ok = new JButton("OK");
-					updWindow.add(newName);
-					updWindow.add(ok);
-					page.add(updWindow);
+					cardPan.add(modifFieldName);
+					cardPan.add(modifFieldDesc);
+					cardPan.add(modifFieldImg);
+					cardPan.add(ok);
+					/* 
+					 * Refresh the page*/
+					page.revalidate();
+					page.repaint();
 					ok.addActionListener(new ActionListener() {
 						
+						/*
+						 * modifying the card */
 						@Override
 						public void actionPerformed(ActionEvent arg0) {
-							
+							gameTable.remove(cardPan);
+							card.updateCard(modifFieldName.getText(), 
+									modifFieldDesc.getText(), modifFieldImg.getText());
+							nameCard.setText(modifFieldName.getText());
+							descCard.setText(modifFieldDesc.getText());
+							iconLabel.setText(modifFieldImg.getText());
+							System.out.println(card);
+							gameTable.add(cardPan);
+							page.revalidate();
+							page.repaint();
 							
 						}
 					});
